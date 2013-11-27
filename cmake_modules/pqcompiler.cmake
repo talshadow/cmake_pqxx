@@ -1,0 +1,76 @@
+include(utilfunction)
+#public compiller
+
+#PGSTD std
+check_std_names(PGSTD)
+#PQXX_BROKEN_ITERATOR 
+check_broken_iterator(PGSTD PQXX_BROKEN_ITERATOR)
+#undef PQXX_BROKEN_USING_DECL
+check_broken_using_decl(PQXX_BROKEN_USING_DECL)
+#undef PQXX_HAVE_CHAR_TRAITS
+check_char_traits(PGSTD PQXX_HAVE_CHAR_TRAITS)
+#undef PQXX_HAVE_CPP_PRAGMA_MESSAGE
+check_pragma_message(PQXX_HAVE_CPP_PRAGMA_MESSAGE)
+#undef PQXX_HAVE_CPP_WARNING
+check_cpp_warning(PQXX_HAVE_CPP_WARNING)
+#undef PQXX_HAVE_IOS
+
+#undef PQXX_HAVE_LIMITS
+#undef PQXX_HAVE_LONG_DOUBLE
+#undef PQXX_HAVE_LONG_LONG
+#undef PQXX_HAVE_REVERSE_ITERATOR
+#undef PQXX_HAVE_STREAMBUF
+#undef PQXX_PQ_IN_NAMESPACE
+#undef PQXX_HAVE_STRERROR_S 
+#undef PQXXTR1 std::tr1
+#undef PQXX_HAVE_SHARED_PTR
+
+
+
+
+
+#internal compiller
+#undef HAVE_SYS_TYPES_H
+#undef HAVE_UNISTD_H 					WIN GCC
+#undef PQXX_HAVE_C_NAN
+#undef PQXX_HAVE_NAN
+#undef PQXX_HAVE_QUIET_NAN
+#undef PQXX_HAVE_COUNT_IF
+#undef PQXX_HAVE_DISTANCE
+#undef PQXX_HAVE_GCC_VISIBILITY 		GCC
+#undef PQXX_HAVE_IMBUE 
+#undef PQXX_HAVE_LOCALE
+#undef PQXX_HAVE_SLEEP					GCC
+#undef PQXX_HAVE_STRING_CLEAR
+#undef PQXX_HAVE_SYS_SELECT_H 
+#undef PQXX_SELECT_ACCEPTS_NULL
+#undef PQXX_HAVE_POLL					NOTWINGCC
+#undef PQXX_HAVE_SLEEP 1
+#undef PQXX_HAVE_STRERROR_R
+#undef PQXX_HAVE_STRING_CLEAR
+#undef PQXX_HAVE_STRLCPY
+#undef PQXX_HAVE_STRNLEN 
+#undef HAVE_VSNPRINTF_DECL 				WIN
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
