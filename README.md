@@ -1,4 +1,4 @@
 cmake_pqxx
 ==========
 
-cmake skript to build pqxx library
+cmake script to build pqxx library
