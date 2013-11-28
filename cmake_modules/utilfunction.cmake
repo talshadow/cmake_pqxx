@@ -133,3 +133,33 @@ function(check_shared_ptr _trdir _std_tr1 result)
 		CHECK_CXX_SOURCE_COMPILES("${_code}" ${result})
 	endif(NOT ${result})
 endfunction(check_shared_ptr _trdir _std_tr1 result)
+
+function(check_count_if _std result)
+	if(NOT ${result})
+#		message(STATUS "check count_if " )
+		CHECK_CXX_SOURCE_COMPILES(" #include <algorithm>
+									#include <functional>
+									using namespace ${${_std}};
+									struct P{P(){}bool operator()(const int&)const{return false;}}p;
+									int main (int, char*[]){
+									int v;return int(count_if(&v,&v,p));}" ${result})
+#		message(STATUS "count_if is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_count_if _std result)
+
+function(check_distance _std result)
+	if(NOT ${result})
+#		message(STATUS "check distance " )
+		CHECK_CXX_SOURCE_COMPILES(" #include <iterator>
+									using namespace ${${_std}};
+									int main (int, char*[]){
+									int i[1]; return distance(i, i+1);return 0;}" ${result})
+#		message(STATUS "distance is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_distance _std result)
+
+
+
+
+
+

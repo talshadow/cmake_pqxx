@@ -4,6 +4,8 @@ include(CheckTypeSize)
 include(utilfunction)
 include(CheckFunctionExists)
 include(CheckCXXCompilerFlag)
+include(CheckSymbolExists)
+include(CheckCXXSymbolExists)
 #public compiller
 check_std_names(PGSTD)
 check_broken_iterator(PGSTD PQXX_BROKEN_ITERATOR)
@@ -23,17 +25,22 @@ check_include_file_cxx(streambuf PQXX_HAVE_STREAMBUF)
 #******************************************************************
 set(CMAKE_EXTRA_INCLUDE_FILES string.h)
 check_function_exists(strerror_s PQXX_HAVE_STRERROR_S)
+unset(CMAKE_EXTRA_INCLUDE_FILES)
 check_tr1_namespace(PGSTD PQXX_TR1_HEADERS PQXXTR1)
 check_shared_ptr(PQXX_TR1_HEADERS PQXXTR1 PQXX_HAVE_SHARED_PTR)
 #internal compiller
 check_include_file(sys/types.h HAVE_SYS_TYPES_H)
 check_include_file(unistd.h HAVE_UNISTD_H)			#WIN GCC
 check_include_file_cxx(locale PQXX_HAVE_LOCALE)
-#undef PQXX_HAVE_C_NAN
-#undef PQXX_HAVE_NAN
-#undef PQXX_HAVE_QUIET_NAN
-#undef PQXX_HAVE_COUNT_IF
-#undef PQXX_HAVE_DISTANCE
+check_cxx_symbol_exists(NAN cmath PQXX_HAVE_C_NAN)
+set(CMAKE_EXTRA_INCLUDE_FILES cmath)
+check_function_exists(nan PQXX_HAVE_NAN)
+unset(CMAKE_EXTRA_INCLUDE_FILES)
+if(PQXX_HAVE_LIMITS)
+	check_cxx_symbol_exists(${PGSTD}::numeric_limits<double>::quiet_NaN limits PQXX_HAVE_QUIET_NAN)
+endif(PQXX_HAVE_LIMITS)
+check_count_if(PGSTD PQXX_HAVE_COUNT_IF)
+check_distance(PGSTD PQXX_HAVE_DISTANCE)
 if(CMAKE_COMPILER_IS_GNUCXX)
 	check_cxx_compiler_flag(-fvisibility=hidden PQXX_HAVE_GCC_VISIBILITY)   # Test for GCC visibility
 endif (CMAKE_COMPILER_IS_GNUCXX)
