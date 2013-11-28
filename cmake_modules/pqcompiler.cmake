@@ -25,6 +25,8 @@ check_function_exists(strerror_s PQXX_HAVE_STRERROR_S)
 #undef PQXXTR1 std::tr1
 check_tr1_namespace(PGSTD PQXX_TR1_HEADERS PQXXTR1)
 #undef PQXX_HAVE_SHARED_PTR
+check_shared_ptr(PQXX_TR1_HEADERS PQXXTR1 PQXX_HAVE_SHARED_PTR)
+
 
 
 
