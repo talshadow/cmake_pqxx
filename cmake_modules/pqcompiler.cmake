@@ -44,7 +44,7 @@ check_distance(PGSTD PQXX_HAVE_DISTANCE)
 if(CMAKE_COMPILER_IS_GNUCXX)
 	check_cxx_compiler_flag(-fvisibility=hidden PQXX_HAVE_GCC_VISIBILITY)   # Test for GCC visibility
 endif (CMAKE_COMPILER_IS_GNUCXX)
-#undef PQXX_HAVE_IMBUE 
+check_imbue(PGSTD PQXX_HAVE_LIMITS PQXX_HAVE_IMBUE)
 #undef PQXX_HAVE_SLEEP					GCC
 #undef PQXX_HAVE_STRING_CLEAR
 check_include_file(sys/select.h PQXX_HAVE_SYS_SELECT_H)

@@ -158,8 +158,23 @@ function(check_distance _std result)
 	endif(NOT ${result})
 endfunction(check_distance _std result)
 
-
-
-
-
+function(check_imbue _std _locale result)
+	if(NOT ${result})
+		if(${_locale})
+			set(_code "#include <locale>
+						#include <sstream>")
+		else(${_locale})
+			set(_code "#include <locale>")
+		endif(${_locale})
+		if(CMAKE_COMPILER_IS_GNUCXX)
+			set(CMAKE_REQUIRED_LIBRARIES stdc++)	
+		endif(CMAKE_COMPILER_IS_GNUCXX)
+#		message(STATUS "check imbue " )
+		CHECK_CXX_SOURCE_COMPILES(" ${_code}
+									using namespace ${${_std}};
+									int main (int, char*[]){
+									stringstream S;S.imbue(locale(\"C\"));return 0;}" ${result})
+#		message(STATUS "imbue is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_imbue _std _locale result)
 
