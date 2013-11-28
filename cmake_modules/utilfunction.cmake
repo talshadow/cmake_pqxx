@@ -57,7 +57,6 @@ function(check_char_traits _std result)
 	endif(NOT ${result})
 endfunction(check_char_traits _std result)
 
-
 function(check_pragma_message result)
 	if(NOT ${result})
 #		message(STATUS "check pragma message " )
@@ -80,3 +79,15 @@ function(check_cpp_warning result)
 	endif(NOT ${result})
 endfunction(check_cpp_warning result)
 
+function(check_reverse_iterator _std result)
+	if(NOT ${result})
+#		message(STATUS "check reverse iterator " )
+		CHECK_CXX_SOURCE_COMPILES("#include <iterator>
+									using namespace ${${_std}};
+									int main (int, char*[]){
+									struct I:iterator<random_access_iterator_tag,int>{};
+									reverse_iterator<I> rit;
+									return 0;}" ${result})
+#		message(STATUS "reverse interator is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_reverse_iterator _std result)
