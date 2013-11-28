@@ -3,6 +3,7 @@ include(CheckIncludeFile)
 include(CheckTypeSize)
 include(utilfunction)
 include(CheckFunctionExists)
+include(CheckCXXCompilerFlag)
 #public compiller
 check_std_names(PGSTD)
 check_broken_iterator(PGSTD PQXX_BROKEN_ITERATOR)
@@ -33,14 +34,16 @@ check_include_file_cxx(locale PQXX_HAVE_LOCALE)
 #undef PQXX_HAVE_QUIET_NAN
 #undef PQXX_HAVE_COUNT_IF
 #undef PQXX_HAVE_DISTANCE
-#undef PQXX_HAVE_GCC_VISIBILITY 		GCC
+if(CMAKE_COMPILER_IS_GNUCXX)
+	check_cxx_compiler_flag(-fvisibility=hidden PQXX_HAVE_GCC_VISIBILITY)   # Test for GCC visibility
+endif (CMAKE_COMPILER_IS_GNUCXX)
 #undef PQXX_HAVE_IMBUE 
 #undef PQXX_HAVE_SLEEP					GCC
 #undef PQXX_HAVE_STRING_CLEAR
 #undef PQXX_HAVE_SYS_SELECT_H 
 #undef PQXX_SELECT_ACCEPTS_NULL
 #undef PQXX_HAVE_POLL					NOTWINGCC
-#undef PQXX_HAVE_SLEEP 1
+#undef PQXX_HAVE_SLEEP
 #undef PQXX_HAVE_STRERROR_R
 #undef PQXX_HAVE_STRING_CLEAR
 #undef PQXX_HAVE_STRLCPY
