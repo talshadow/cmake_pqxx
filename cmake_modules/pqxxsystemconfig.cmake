@@ -15,10 +15,10 @@ check_include_file(sys/stat.h HAVE_SYS_STAT_H)
 check_include_file(sys/types.h HAVE_SYS_TYPES_H)
 check_include_file(unistd.h HAVE_UNISTD_H)
 check_include_file_cxx(boost/smart_ptr.hpp PQXX_HAVE_BOOST_SMART_PTR)
-check_include_file_cxx(ios PQXX_HAVE_IOS)
-check_include_file_cxx(limits PQXX_HAVE_LIMITS)
+
+
 check_include_file_cxx(locale PQXX_HAVE_LOCALE)
-check_include_file_cxx(streambuf PQXX_HAVE_STREAMBUF)
+
 
 
 CHECK_FUNCTION_EXISTS(sleep PQXX_HAVE_SLEEP)
@@ -27,7 +27,6 @@ CHECK_SYMBOL_EXISTS(NAN "limits" PQXX_HAVE_C_NAN)
 if(NOT PQXX_HAVE_NAN AND NOT PQXX_HAVE_C_NAN)
   set(PQXX_HAVE_QUIET_NAN 1)
 endif(NOT PQXX_HAVE_NAN AND NOT PQXX_HAVE_C_NAN)
-set(PQXX_HAVE_LONG_DOUBLE 1)
 
 
 #/* name of standard library namespace (normally "std") */

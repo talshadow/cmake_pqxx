@@ -1,27 +1,24 @@
+include(CheckIncludeFileCXX)
+INCLUDE (CheckTypeSize)
 include(utilfunction)
 #public compiller
-
-#PGSTD std
 check_std_names(PGSTD)
-#PQXX_BROKEN_ITERATOR 
 check_broken_iterator(PGSTD PQXX_BROKEN_ITERATOR)
-#undef PQXX_BROKEN_USING_DECL
 check_broken_using_decl(PQXX_BROKEN_USING_DECL)
-#undef PQXX_HAVE_CHAR_TRAITS
 check_char_traits(PGSTD PQXX_HAVE_CHAR_TRAITS)
-#undef PQXX_HAVE_CPP_PRAGMA_MESSAGE
 check_pragma_message(PQXX_HAVE_CPP_PRAGMA_MESSAGE)
-#undef PQXX_HAVE_CPP_WARNING
 check_cpp_warning(PQXX_HAVE_CPP_WARNING)
-#undef PQXX_HAVE_IOS
-
-#undef PQXX_HAVE_LIMITS
-#undef PQXX_HAVE_LONG_DOUBLE
-#undef PQXX_HAVE_LONG_LONG
+check_include_file_cxx(ios PQXX_HAVE_IOS)
+check_include_file_cxx(limits PQXX_HAVE_LIMITS)
+check_type_size("long double" PQXX_HAVE_LONG_DOUBLE)
+check_type_size("long long" PQXX_HAVE_LONG_LONG)
+check_include_file_cxx(streambuf PQXX_HAVE_STREAMBUF)
+#******************************************************************
+#PQXX_PQ_IN_NAMESPACE - unknown test - don't understand what this
+#******************************************************************
 #undef PQXX_HAVE_REVERSE_ITERATOR
-#undef PQXX_HAVE_STREAMBUF
-#undef PQXX_PQ_IN_NAMESPACE
-#undef PQXX_HAVE_STRERROR_S 
+
+#undef PQXX_HAVE_STRERROR_S
 #undef PQXXTR1 std::tr1
 #undef PQXX_HAVE_SHARED_PTR
 
