@@ -1,5 +1,4 @@
 include(CheckCXXSourceCompiles)
-
 function(check_std_names result)
 	if(NOT ${result})
 	set( _names std _STL stlp_std )
