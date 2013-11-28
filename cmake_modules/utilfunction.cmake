@@ -92,13 +92,31 @@ function(check_reverse_iterator _std result)
 	endif(NOT ${result})
 endfunction(check_reverse_iterator _std result)
 
-
 function(check_tr1_dir result)
 	if(NOT ${result})
-#		message(STATUS "check supports warning directive " )
 		CHECK_CXX_SOURCE_COMPILES("#include <tr1/memory>
 									int main (int, char*[]){
 									return 0;}" ${result})
-#		message(STATUS "pragma supports warning directive is ${${result}}")
 	endif(NOT ${result})
 endfunction(check_tr1_dir result)
+
+function(check_tr1_namespace _std _trdir result)
+	#if(NOT ${result})
+		if(${_trdir})
+			set(_code "#include <tr1/memory>")
+		else(${_trdir})
+			set(_code "#include <memory>")
+		endif(${_trdir})
+		set(_code "${_code}
+				   int main (int, char*[]){
+				   using namespace ${${_std}}::tr1
+				   return 0;}")
+		CHECK_CXX_SOURCE_COMPILES("${_code}" ${result})
+		if(${result})
+			set(${result} "${${_std}}::tr1" CACHE INTERNAL "Set to check_tr1_namespace ${result}")
+		else(${result})
+			set(${result} "${${_std}}" CACHE INTERNAL "Set to check_tr1_namespace ${result}")
+		endif(${result})
+	#endif(NOT ${result})
+endfunction(check_tr1_namespace result)
+

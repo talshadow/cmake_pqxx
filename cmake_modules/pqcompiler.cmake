@@ -22,9 +22,8 @@ check_include_file_cxx(streambuf PQXX_HAVE_STREAMBUF)
 #undef PQXX_HAVE_STRERROR_S <string.h>
 set(CMAKE_EXTRA_INCLUDE_FILES string.h)
 check_function_exists(strerror_s PQXX_HAVE_STRERROR_S)
-
-
 #undef PQXXTR1 std::tr1
+check_tr1_namespace(PGSTD PQXX_TR1_HEADERS PQXXTR1)
 #undef PQXX_HAVE_SHARED_PTR
 
 
