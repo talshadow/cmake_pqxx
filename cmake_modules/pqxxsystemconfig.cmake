@@ -3,7 +3,6 @@ include(CheckIncludeFileCXX)
 
 
 #Detect config.h options
-check_include_file
 check_include_file(dlfcn.h HAVE_DLFCN_H) 
 check_include_file(inttypes.h HAVE_INTTYPES_H)
 check_include_file(memory.h HAVE_MEMORY_H)
@@ -15,8 +14,6 @@ check_include_file(sys/stat.h HAVE_SYS_STAT_H)
 check_include_file(sys/types.h HAVE_SYS_TYPES_H)
 check_include_file(unistd.h HAVE_UNISTD_H)
 check_include_file_cxx(boost/smart_ptr.hpp PQXX_HAVE_BOOST_SMART_PTR)
-
-
 check_include_file_cxx(locale PQXX_HAVE_LOCALE)
 
 
