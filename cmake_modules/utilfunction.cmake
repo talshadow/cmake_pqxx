@@ -91,3 +91,14 @@ function(check_reverse_iterator _std result)
 #		message(STATUS "reverse interator is ${${result}}")
 	endif(NOT ${result})
 endfunction(check_reverse_iterator _std result)
+
+
+function(check_tr1_dir result)
+	if(NOT ${result})
+#		message(STATUS "check supports warning directive " )
+		CHECK_CXX_SOURCE_COMPILES("#include <tr1/memory>
+									int main (int, char*[]){
+									return 0;}" ${result})
+#		message(STATUS "pragma supports warning directive is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_tr1_dir result)
