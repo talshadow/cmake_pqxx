@@ -249,3 +249,34 @@ function(check_select_accepts_null _std _sys_select _unistd result)
 		set(CMAKE_REQUIRED_LIBRARIES)
 	endif(NOT ${result})
 endfunction(check_select_accepts_null _std _sys_select _unistd result)
+
+function(check_auto_ptr _std result)
+	if(NOT ${result})
+#		message(STATUS "check auto_ptr " )
+		CHECK_CXX_SOURCE_COMPILES(" #include <memory>
+									using namespace ${${_std}};
+									int main (int, char*[]){auto_ptr<int> ptr;}" ${result})
+#		message(STATUS "auto_ptr is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_auto_ptr _std result)
+
+function(check_in_namespace _namespace _control_code result)
+	if(NOT ${result})
+#		message(STATUS "check isinf " )
+		CHECK_CXX_SOURCE_COMPILES(" #include <cmath>
+									using namespace ${${_namespace}};
+									int main (int, char*[]){${${_control_code}}; return 0;}" ${result})
+#		message(STATUS "isinf is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_in_namespace _namespace _control_code result)
+
+function(check_attribute_gcc attr result)
+	if(NOT ${result})
+		set(CMAKE_REQUIRED_FLAGS -Werror)
+		message(STATUS "check attribute " ${attr} )
+		CHECK_CXX_SOURCE_COMPILES(" void __attribute__ ((${attr})) f();
+									int main (int, char*[]){return 0;}" ${result})
+		set(CMAKE_REQUIRED_FLAGS)
+#		message(STATUS "attribute is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_attribute_gcc attr result)

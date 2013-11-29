@@ -17,20 +17,17 @@ check_include_file_cxx(boost/smart_ptr.hpp PQXX_HAVE_BOOST_SMART_PTR)
 
 
 
-#/* Define if compiler has auto_ptr */
-#undef PQXX_HAVE_AUTO_PTR
-/#* Define if math.h defines C99 isinf() */
-#undef PQXX_HAVE_C_ISINF
-#/* Define if math.h defines C99 isnan() */
-#undef PQXX_HAVE_C_ISNAN
-/#* Define if g++ supports const attribute */
-#undef PQXX_HAVE_GCC_CONST
-/#* Define if g++ supports deprecated attribute, as in g++ 4.0 */
-#undef PQXX_HAVE_GCC_DEPRECATED
-#/* Define if g++ supports noreturn attribute */
-#undef PQXX_HAVE_GCC_NORETURN
-#/* Define if g++ supports pure attribute */
-#undef PQXX_HAVE_GCC_PURE
+check_auto_ptr(PGSTD PQXX_HAVE_AUTO_PTR)
+set(CMAKE_EXTRA_INCLUDE_FILES cmath)
+check_in_namespace( PGSTD "isinf(0.44)" PQXX_HAVE_C_ISINF)
+check_in_namespace( PGSTD "isnan(0.44)" PQXX_HAVE_C_ISNAN)
+unset(CMAKE_EXTRA_INCLUDE_FILES)
+if(CMAKE_COMPILER_IS_GNUCXX)
+	check_attribute_gcc(const PQXX_HAVE_GCC_CONST)
+	check_attribute_gcc(deprecated PQXX_HAVE_GCC_DEPRECATED)
+	check_attribute_gcc(noreturn PQXX_HAVE_GCC_NORETURN)
+	check_attribute_gcc(pure PQXX_HAVE_GCC_PURE)
+endif(CMAKE_COMPILER_IS_GNUCXX)
 #/* Define if compiler has move(). */
 #undef PQXX_HAVE_MOVE
 #/* Define for GNU-style strerror_r */

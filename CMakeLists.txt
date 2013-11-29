@@ -10,6 +10,7 @@ message(>>>>>>>>>> "PROJECT_NAME ${PROJECT_NAME}" <<<<<<<<<<)
 include(pqxxversion)
 project_setup(LIBPQXX PQXX_MAJOR PQXX_MINOR PQXX_PATCH)
 include(pqcompiler)
+include(pqxxsystemconfig)
 #########################################################################################################
 if(GNU OR MINGW)
 	set(CMAKE_C_FLAGS_RELEASE "-O2 -pipe -march=native -mmmx -msse3 -falign-functions=0 -falign-jumps=1 -falign-labels=1 -falign-loops=1 -DNDEBUG -funroll-all-loops -fmerge-all-constants -fbranch-target-load-optimize2 -fcx-limited-range  -ftree-loop-im -ftree-vectorize -Wno-literal-suffix -Wno-deprecated")
