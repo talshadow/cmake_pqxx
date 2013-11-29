@@ -51,6 +51,7 @@ unset(CMAKE_EXTRA_INCLUDE_FILES)
 check_string_clear(PGSTD PQXX_HAVE_STRING_CLEAR)
 check_include_file(sys/select.h PQXX_HAVE_SYS_SELECT_H)
 #undef PQXX_SELECT_ACCEPTS_NULL
+check_select_accepts_null(PGSTD PQXX_HAVE_SYS_SELECT_H HAVE_UNISTD_H PQXX_SELECT_ACCEPTS_NULL)
 if(NOT WIN32)
 check_include_file(poll.h PQXX_HAVE_POLL) #NOTWINGCC
 endif(NOT WIN32)

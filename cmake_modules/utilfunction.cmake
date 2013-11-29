@@ -222,4 +222,30 @@ function(check_std_strerror_r _std result)
 	endif(NOT ${result})
 endfunction(check_std_strerror_r _std result)
 
-
+function(check_select_accepts_null _std _sys_select _unistd result)
+	if(NOT ${result})
+		if(${_sys_select})
+			set(_code "#include <sys/select.h>")
+		else(${_sys_select})
+			set(_code "#include <ctime>
+					   #include <sys/types.h> ")
+		endif(${_sys_select})
+		if(${_unistd})
+			set(_code "${_code}
+						 #include <unistd.h>}")
+		endif(${_unistd})
+		set(_code "${_code}
+				   #ifdef _WIN32
+						#include <winsock2.h>
+				   #endif
+				   using namespace ${${_std}};
+				   extern \"C\" int foo(){fd_set f; FD_SET(1,&f); return select(2,0,&f,&f,0)<0;}
+				   int main (int, char*[]){
+				   return foo();}")
+		if(WIN32)
+			set(CMAKE_REQUIRED_LIBRARIES Ws2_32)
+		endif(WIN32)
+		CHECK_CXX_SOURCE_COMPILES("${_code}" ${result})
+		set(CMAKE_REQUIRED_LIBRARIES)
+	endif(NOT ${result})
+endfunction(check_select_accepts_null _std _sys_select _unistd result)
