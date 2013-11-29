@@ -6,7 +6,7 @@ include(CheckFunctionExists)
 include(CheckCXXCompilerFlag)
 include(CheckSymbolExists)
 include(CheckCXXSymbolExists)
-#public compiller
+#public compiler
 check_std_names(PGSTD)
 check_broken_iterator(PGSTD PQXX_BROKEN_ITERATOR)
 check_broken_using_decl(PQXX_BROKEN_USING_DECL)
@@ -14,7 +14,7 @@ check_char_traits(PGSTD PQXX_HAVE_CHAR_TRAITS)
 check_pragma_message(PQXX_HAVE_CPP_PRAGMA_MESSAGE)
 check_cpp_warning(PQXX_HAVE_CPP_WARNING)
 check_reverse_iterator(PGSTD PQXX_HAVE_REVERSE_ITERATOR)
-check_tr1_dir(PQXX_TR1_HEADERS)
+check_tr1_dir(PQXX_TR1_HEADERS)	# not from public compiler
 check_include_file_cxx(ios PQXX_HAVE_IOS)
 check_include_file_cxx(limits PQXX_HAVE_LIMITS)
 check_type_size("long double" PQXX_HAVE_LONG_DOUBLE)
@@ -28,7 +28,7 @@ check_function_exists(strerror_s PQXX_HAVE_STRERROR_S)
 unset(CMAKE_EXTRA_INCLUDE_FILES)
 check_tr1_namespace(PGSTD PQXX_TR1_HEADERS PQXXTR1)
 check_shared_ptr(PQXX_TR1_HEADERS PQXXTR1 PQXX_HAVE_SHARED_PTR)
-#internal compiller
+#internal compiler
 check_include_file(sys/types.h HAVE_SYS_TYPES_H)
 check_include_file(unistd.h HAVE_UNISTD_H)			#WIN GCC
 check_include_file_cxx(locale PQXX_HAVE_LOCALE)
