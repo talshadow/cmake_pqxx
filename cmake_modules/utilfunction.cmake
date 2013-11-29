@@ -273,7 +273,7 @@ endfunction(check_in_namespace _namespace _control_code result)
 function(check_attribute_gcc attr result)
 	if(NOT ${result})
 		set(CMAKE_REQUIRED_FLAGS -Werror)
-		message(STATUS "check attribute " ${attr} )
+		#message(STATUS "check attribute " ${attr} )
 		CHECK_CXX_SOURCE_COMPILES(" void __attribute__ ((${attr})) f();
 									int main (int, char*[]){return 0;}" ${result})
 		set(CMAKE_REQUIRED_FLAGS)
