@@ -1,22 +1,24 @@
 #ifndef PQXX_HEAD_COMPILER_INTERNAL_H
 #define PQXX_HEAD_COMPILER_INTERNAL_H
 
-#cmakedefine HAVE_SYS_TYPES_H 		
-#cmakedefine HAVE_UNISTD_H 		
-#cmakedefine PQXX_HAVE_COUNT_IF 	
-#cmakedefine PQXX_HAVE_C_NAN 		
-#cmakedefine PQXX_HAVE_DISTANCE 	
-#cmakedefine PQXX_HAVE_GCC_VISIBILITY 	
-#cmakedefine PQXX_HAVE_IMBUE 		
-#cmakedefine PQXX_HAVE_LOCALE 		
-#cmakedefine PQXX_HAVE_NAN 		
-#cmakedefine PQXX_HAVE_POLL 		
-#cmakedefine PQXX_HAVE_QUIET_NAN 	
-#cmakedefine PQXX_HAVE_SLEEP 		
-#cmakedefine PQXX_HAVE_STRERROR_R 	
-#cmakedefine PQXX_HAVE_STRING_CLEAR 	
-#cmakedefine PQXX_HAVE_STRNLEN 		
-#cmakedefine PQXX_HAVE_SYS_SELECT_H 	
-#cmakedefine PQXX_SELECT_ACCEPTS_NULL 	
+#cmakedefine HAVE_SYS_TYPES_H
+#cmakedefine HAVE_UNISTD_H
+#cmakedefine PQXX_HAVE_LOCALE
+#cmakedefine PQXX_HAVE_C_NAN
+#cmakedefine PQXX_HAVE_NAN
+#cmakedefine PQXX_HAVE_QUIET_NAN
+#cmakedefine PQXX_HAVE_COUNT_IF
+#cmakedefine PQXX_HAVE_DISTANCE
+#cmakedefine PQXX_HAVE_GCC_VISIBILITY
+#cmakedefine PQXX_HAVE_IMBUE
+#cmakedefine PQXX_HAVE_SLEEP
+#cmakedefine PQXX_HAVE_STRING_CLEAR
+#cmakedefine PQXX_HAVE_SYS_SELECT_H
+#cmakedefine PQXX_SELECT_ACCEPTS_NULL
+#cmakedefine PQXX_HAVE_POLL
+#cmakedefine PGSTD PQXX_HAVE_STRERROR_R
+#cmakedefine PGSTD PQXX_HAVE_STRLCPY
+#cmakedefine PQXX_HAVE_STRNLEN
+#cmakedefine HAVE_VSNPRINTF_DECL
 
 #endif //PQXX_HEAD_COMPILER_INTERNAL_H
