@@ -45,17 +45,21 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 	check_cxx_compiler_flag(-fvisibility=hidden PQXX_HAVE_GCC_VISIBILITY)   # Test for GCC visibility
 endif (CMAKE_COMPILER_IS_GNUCXX)
 check_imbue(PGSTD PQXX_HAVE_LIMITS PQXX_HAVE_IMBUE)
-#undef PQXX_HAVE_SLEEP					GCC
-#undef PQXX_HAVE_STRING_CLEAR
+set(CMAKE_EXTRA_INCLUDE_FILES unistd.h)
+	check_function_exists(sleep PQXX_HAVE_SLEEP)
+unset(CMAKE_EXTRA_INCLUDE_FILES)
+check_string_clear(PGSTD PQXX_HAVE_STRING_CLEAR)
 check_include_file(sys/select.h PQXX_HAVE_SYS_SELECT_H)
 #undef PQXX_SELECT_ACCEPTS_NULL
-#undef PQXX_HAVE_POLL					NOTWINGCC
-#undef PQXX_HAVE_SLEEP
-#undef PQXX_HAVE_STRERROR_R
-#undef PQXX_HAVE_STRING_CLEAR
-#undef PQXX_HAVE_STRLCPY
-#undef PQXX_HAVE_STRNLEN 
-#undef HAVE_VSNPRINTF_DECL 				WIN
+if(NOT WIN32)
+check_include_file(poll.h PQXX_HAVE_POLL) #NOTWINGCC
+endif(NOT WIN32)
+check_std_strerror_r(PGSTD PQXX_HAVE_STRERROR_R)
+check_std_strlcpy(PGSTD PQXX_HAVE_STRLCPY)
+check_std_strnlen(PGSTD PQXX_HAVE_STRNLEN)
+set(CMAKE_EXTRA_INCLUDE_FILES stdio.h stdarg.h)
+	check_function_exists(vsnprintf HAVE_VSNPRINTF_DECL) #WIN
+unset(CMAKE_EXTRA_INCLUDE_FILES)
 
 
 

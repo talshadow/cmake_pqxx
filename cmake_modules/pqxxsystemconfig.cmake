@@ -15,12 +15,6 @@ check_include_file_cxx(boost/smart_ptr.hpp PQXX_HAVE_BOOST_SMART_PTR)
 
 
 
-CHECK_FUNCTION_EXISTS(sleep PQXX_HAVE_SLEEP)
-CHECK_FUNCTION_EXISTS(fnan PQXX_HAVE_NAN)
-CHECK_SYMBOL_EXISTS(NAN "limits" PQXX_HAVE_C_NAN)
-if(NOT PQXX_HAVE_NAN AND NOT PQXX_HAVE_C_NAN)
-  set(PQXX_HAVE_QUIET_NAN 1)
-endif(NOT PQXX_HAVE_NAN AND NOT PQXX_HAVE_C_NAN)
 
 
 #/* name of standard library namespace (normally "std") */

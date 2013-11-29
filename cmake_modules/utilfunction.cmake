@@ -178,3 +178,48 @@ function(check_imbue _std _locale result)
 	endif(NOT ${result})
 endfunction(check_imbue _std _locale result)
 
+function(check_string_clear _std result)
+	if(NOT ${result})
+#		message(STATUS "check distance " )
+		CHECK_CXX_SOURCE_COMPILES(" #include <string>
+									using namespace ${${_std}};
+									int main (int, char*[]){
+									string i;i.clear();return 0;}" ${result})
+#		message(STATUS "distance is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_string_clear _std result)
+
+function(check_std_strnlen _std result)
+	if(NOT ${result})
+#		message(STATUS "check strnlen " )
+		CHECK_CXX_SOURCE_COMPILES(" #include <cstring>
+									using namespace ${${_std}};
+									int main (int, char*[]){
+									return strnlen(\" \",1);}" ${result})
+#		message(STATUS "strnlen is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_std_strnlen _std result)
+
+function(check_std_strlcpy _std result)
+	if(NOT ${result})
+#		message(STATUS "check strnlen " )
+		CHECK_CXX_SOURCE_COMPILES(" #include <cstring>
+									using namespace ${${_std}};
+									int main (int, char*[]){
+									char buf[2];return strlcpy(buf,\" \",1);}" ${result})
+#		message(STATUS "strnlen is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_std_strlcpy _std result)
+
+function(check_std_strerror_r _std result)
+	if(NOT ${result})
+#		message(STATUS "check strnlen " )
+		CHECK_CXX_SOURCE_COMPILES(" #include <cstring>
+									using namespace ${${_std}};
+									bool f(char x[]) { return strerror_r(0,x,10) != 0; }
+									int main (int, char*[]){return 0;}" ${result})
+#		message(STATUS "strnlen is ${${result}}")
+	endif(NOT ${result})
+endfunction(check_std_strerror_r _std result)
+
+
