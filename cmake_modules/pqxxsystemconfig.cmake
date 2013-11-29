@@ -30,11 +30,15 @@ if(CMAKE_COMPILER_IS_GNUCXX)
 endif(CMAKE_COMPILER_IS_GNUCXX)
 #/* Define if compiler has move(). */
 #undef PQXX_HAVE_MOVE
-#/* Define for GNU-style strerror_r */
-#undef PQXX_HAVE_STRERROR_R_GNU
-#/* Define if compiler has unique_ptr */
-#undef PQXX_HAVE_UNIQUE_PTR
+set(CMAKE_EXTRA_INCLUDE_FILES utility)
+check_in_namespace( PGSTD "int i=5; int j=move(i)" PQXX_HAVE_MOVE)
+set(CMAKE_EXTRA_INCLUDE_FILES)
+set(CMAKE_EXTRA_INCLUDE_FILES cstring)
+check_in_namespace( PGSTD "const char *it_is_a_string=strerror_r(0,1,10);" PQXX_HAVE_STRERROR_R_GNU)
+set(CMAKE_EXTRA_INCLUDE_FILES)
+set(CMAKE_EXTRA_INCLUDE_FILES memory)
+check_in_namespace( PGSTD "unique_ptr<int> i(new int)" PQXX_HAVE_UNIQUE_PTR)
+set(CMAKE_EXTRA_INCLUDE_FILES)
 #/* Define to 1 if you have the ANSI C header files. */
 #undef STDC_HEADERS
-#/* Version number of package */
-#undef VERSION
+
