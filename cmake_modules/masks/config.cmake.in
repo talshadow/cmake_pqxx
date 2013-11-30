@@ -81,7 +81,7 @@
 /* Define if you have the <ios> header */
 #cmakedefine PQXX_HAVE_IOS
 /* Define if <limits> exists */
-#cmakedefine PQXX_HAVE_LIMITS
+#cmakedefine PQXX_HAVE_LIMITS 1
 /* Define if you have the <locale> header */
 #cmakedefine PQXX_HAVE_LOCALE
 /* Define if the compiler supports the standard "long double" type */
