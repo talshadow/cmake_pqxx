@@ -1,8 +1,6 @@
 include(CheckIncludeFile)
 include(CheckIncludeFiles)
 include(CheckIncludeFileCXX)
-
-
 #Detect config.h options
 check_include_files("stdarg.h;stdlib.h;string.h;float.h" STDC_HEADERS)
 check_include_file(dlfcn.h HAVE_DLFCN_H) 
@@ -14,7 +12,6 @@ check_include_file(strings.h HAVE_STRINGS_H)
 check_include_file(string.h HAVE_STRING_H)
 check_include_file(sys/stat.h HAVE_SYS_STAT_H)
 check_include_file_cxx(boost/smart_ptr.hpp PQXX_HAVE_BOOST_SMART_PTR)
-
 check_auto_ptr(PGSTD PQXX_HAVE_AUTO_PTR)
 set(CMAKE_EXTRA_INCLUDE_FILES cmath)
 check_in_namespace( PGSTD "isinf(0.44)" PQXX_HAVE_C_ISINF)
