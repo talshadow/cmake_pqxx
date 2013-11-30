@@ -1,35 +1,149 @@
 #ifndef LIBPQXX_CONFIG_H
 #define LIBPQXX_CONFIG_H
-
-#define PACKAGE "libpqxx"
-#define PACKAGE_BUGREPORT "Jeroen T. Vermeulen <jtv@xs4all.nl>"
-#define PACKAGE_NAME "libpqxx"
-#define PACKAGE_STRING "libpqxx 4.1"
-#define PACKAGE_TARNAME "libpqxx"
-#define PACKAGE_URL ""
-#define PACKAGE_VERSION "4.1"
-#define PGSTD 	std
-#define PQXXTR1 std::tr1
-#define PQXX_HAVE_CPP_PRAGMA_MESSAGE 1
-
-#cmakedefine HAVE_DLFCN_H	1
-#cmakedefine HAVE_INTTYPES_H	1
-#cmakedefine HAVE_MEMORY_H	1
-#cmakedefine HAVE_STDINT_H	1
-#cmakedefine HAVE_STDLIB_H	1
-#cmakedefine HAVE_STRINGS_H	1
-#cmakedefine HAVE_STRING_H	1
-#cmakedefine HAVE_SYS_STAT_H	1
-#cmakedefine HAVE_SYS_TYPES_H	1
-#cmakedefine HAVE_UNISTD_H	1
-#cmakedefine PQXX_HAVE_BOOST_SMART_PTR 1
-#cmakedefine PQXX_HAVE_IOS	1
-#cmakedefine PQXX_HAVE_LIMITS	1
-#cmakedefine PQXX_HAVE_LOCALE	1
+/* Define to 1 if you have the <dlfcn.h> header file. */
+#cmakedefine HAVE_DLFCN_H 1
+/* Define to 1 if you have the <inttypes.h> header file. */
+#cmakedefine HAVE_INTTYPES_H 1
+/* Define to 1 if you have the `pq' library (-lpq). */
+#cmakedefine HAVE_LIBPQ 1
+/* Define to 1 if you have the <memory.h> header file. */
+#cmakedefine HAVE_MEMORY_H 1
+/* Define to 1 if you have the <stdint.h> header file. */
+#cmakedefine HAVE_STDINT_H 1
+/* Define to 1 if you have the <stdlib.h> header file. */
+#cmakedefine HAVE_STDLIB_H 1
+/* Define to 1 if you have the <strings.h> header file. */
+#cmakedefine HAVE_STRINGS_H 1
+/* Define to 1 if you have the <string.h> header file. */
+#cmakedefine HAVE_STRING_H 1
+/* Define to 1 if you have the <sys/stat.h> header file. */
+#cmakedefine HAVE_SYS_STAT_H 1
+/* Define to 1 if you have the <sys/types.h> header file. */
+#cmakedefine HAVE_SYS_TYPES_H 1
+/* Define to 1 if you have the <unistd.h> header file. */
+#cmakedefine HAVE_UNISTD_H 1
+/* Define to the sub-directory in which libtool stores uninstalled libraries. */
+#define LT_OBJDIR ${CMAKE_BINARY_DIR}
+/* Name of package */
+#cmakedefine PACKAGE ${PACKAGE}
+/* Define to the address where bug reports for this package should be sent. */
+#cmakedefine PACKAGE_BUGREPORT ${PACKAGE_BUGREPORT}
+/* Define to the full name of this package. */
+#cmakedefine PACKAGE_NAME ${PACKAGE_NAME}
+/* Define to the full name and version of this package. */
+#cmakedefine PACKAGE_STRING ${PACKAGE_STRING}
+/* Define to the one symbol short name of this package. */
+#cmakedefine PACKAGE_TARNAME ${PACKAGE_TARNAME}
+/* Define to the home page for this package. */
+#cmakedefine PACKAGE_URL ${PACKAGE_URL}
+/* Define to the version of this package. */
+#cmakedefine PACKAGE_VERSION ${PACKAGE_VERSION}
+/* name of standard library namespace (normally "std") */
+#cmakedefine PGSTD ${PGSTD}
+/* namespace of TR1 standard extensions (e.g. "std" or "std::tr1") */
+#cmakedefine PQXXTR1 ${PQXXTR1}
+/* Define if <iterator> lacks an iterator template definition */
+#cmakedefine PQXX_BROKEN_ITERATOR
+/* Define if function overloading using "using" breaks */
+#cmakedefine PQXX_BROKEN_USING_DECL
+/* Define if compiler has auto_ptr */
+#cmakedefine PQXX_HAVE_AUTO_PTR
+/* Define if you have the <boost/smart_ptr.hpp> header */
+#cmakedefine PQXX_HAVE_BOOST_SMART_PTR
+/* Define if std provides the char_traits template and <char> specialization*/
+#cmakedefine PQXX_HAVE_CHAR_TRAITS
+/* Define if count_if() works according to the standard */
+#cmakedefine PQXX_HAVE_COUNT_IF
+/* Define if preprocessor supports pragma "message" */
+#cmakedefine PQXX_HAVE_CPP_PRAGMA_MESSAGE
+/* Define if preprocessor supports nonstandard "warning" directive */
+#cmakedefine PQXX_HAVE_CPP_WARNING
+/* Define if math.h defines C99 isinf() */
+#cmakedefine PQXX_HAVE_C_ISINF
+/* Define if math.h defines C99 isnan() */
+#cmakedefine PQXX_HAVE_C_ISNAN
+/* Define if C math header defines NAN */
+#cmakedefine PQXX_HAVE_C_NAN
+/* Define if distance() works according to the standard */
+#cmakedefine PQXX_HAVE_DISTANCE
+/* Define if g++ supports const attribute */
+#cmakedefine PQXX_HAVE_GCC_CONST
+/* Define if g++ supports deprecated attribute, as in g++ 4.0 */
+#cmakedefine PQXX_HAVE_GCC_DEPRECATED
+/* Define if g++ supports noreturn attribute */
+#cmakedefine PQXX_HAVE_GCC_NORETURN
+/* Define if g++ supports pure attribute */
+#cmakedefine PQXX_HAVE_GCC_PURE
+/* Define if g++ supports visibility attribute, as in g++ 4.0 */
+#cmakedefine PQXX_HAVE_GCC_VISIBILITY
+/* Define if stringstream::imbue works */
+#cmakedefine PQXX_HAVE_IMBUE
+/* Define if you have the <ios> header */
+#cmakedefine PQXX_HAVE_IOS
+/* Define if <limits> exists */
+#cmakedefine PQXX_HAVE_LIMITS
+/* Define if you have the <locale> header */
+#cmakedefine PQXX_HAVE_LOCALE
+/* Define if the compiler supports the standard "long double" type */
+#cmakedefine PQXX_HAVE_LONG_DOUBLE
+/* Define if the compiler supports "long long" types */
+#cmakedefine PQXX_HAVE_LONG_LONG
+/* Define if libpq has lo_tell() */
+#cmakedefine PQXX_HAVE_LO_TELL
+/* Define if compiler has move(). */
+#cmakedefine PQXX_HAVE_MOVE
+/* Define if C99 fnan()/nan()/lnan() are available */
+#cmakedefine PQXX_HAVE_NAN
+/* Define if the system has the poll() function (mainly GNU/Linux) */
+#cmakedefine PQXX_HAVE_POLL
+/* Define if libpq has PQcancel() and friends */
+#cmakedefine PQXX_HAVE_PQCANCEL
+/* Define if libpq has PQclientEncoding() */
+#cmakedefine PQXX_HAVE_PQCLIENTENCODING
+/* Define if libpq has PQdescribePortal() */
+#cmakedefine PQXX_HAVE_PQDESCRIBEPORTAL
+/* Define if libpq has PQencryptPassword() */
+#cmakedefine PQXX_HAVE_PQENCRYPTPASSWORD
+/* Define if libpq has PQescapeIdentifier() */
+#cmakedefine PQXX_HAVE_PQESCAPEIDENTIFIER
+/* Define if libpq has PQescapeLiteral() */
+#cmakedefine PQXX_HAVE_PQESCAPELITERAL
+/* Define if libpq has PQisthreadsafe() */
+#cmakedefine PQXX_HAVE_PQISTHREADSAFE
+/* Define if libpq has PQmblen() */
+#cmakedefine PQXX_HAVE_PQMBLEN
+/* Define if PQunescapeBytea() supports hex escape format */
+#cmakedefine PQXX_HAVE_PQUNESCAPEBYTEA_9
+/* Define if std::numeric_limits has quiet_NaN() */
+#cmakedefine PQXX_HAVE_QUIET_NAN
+/* Define if reverse_iterator template works as expected */
+#cmakedefine PQXX_HAVE_REVERSE_ITERATOR
+/* Define if compiler has shared_ptr */
+#cmakedefine PQXX_HAVE_SHARED_PTR
+/* Define if POSIX sleep() exists */
+#cmakedefine PQXX_HAVE_SLEEP
+/* Define if you have the <streambuf> header; if not, <streambuf.h> is used */
 #cmakedefine PQXX_HAVE_STREAMBUF
-
-
-
-
-
+/* Define if strerror_r exists */
+#cmakedefine PQXX_HAVE_STRERROR_R
+/* Define for GNU-style strerror_r */
+#cmakedefine PQXX_HAVE_STRERROR_R_GNU
+/* Define if string class has the clear() function */
+#cmakedefine PQXX_HAVE_STRING_CLEAR
+/* Define if strlcpy exists */
+#cmakedefine PQXX_HAVE_STRLCPY
+/* Define if strnlen exists */
+#cmakedefine PQXX_HAVE_STRNLEN
+/* Define if the sys/select.h header defines a working select() and friends, as per POSIX 1003.1-2001 */
+#cmakedefine PQXX_HAVE_SYS_SELECT_H
+/* Define if compiler has unique_ptr */
+#cmakedefine PQXX_HAVE_UNIQUE_PTR
+/* Define if select() accepts NULL fd_set arguments */
+#cmakedefine PQXX_SELECT_ACCEPTS_NULL
+/* Define if headers for TR1 extension to standard live in tr1/ */
+#cmakedefine PQXX_TR1_HEADERS ${PQXX_TR1_HEADERS}
+/* Define to 1 if you have the ANSI C header files. */
+#cmakedefine STDC_HEADERS
+/* Version number of package */
+#cmakedefine VERSION ${VERSION}
 #endif
