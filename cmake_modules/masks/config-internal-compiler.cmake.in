@@ -16,8 +16,8 @@
 #cmakedefine PQXX_HAVE_SYS_SELECT_H
 #cmakedefine PQXX_SELECT_ACCEPTS_NULL
 #cmakedefine PQXX_HAVE_POLL
-#cmakedefine PGSTD PQXX_HAVE_STRERROR_R
-#cmakedefine PGSTD PQXX_HAVE_STRLCPY
+#cmakedefine PQXX_HAVE_STRERROR_R
+#cmakedefine PQXX_HAVE_STRLCPY
 #cmakedefine PQXX_HAVE_STRNLEN
 #cmakedefine HAVE_VSNPRINTF_DECL
 
