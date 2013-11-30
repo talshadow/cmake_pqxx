@@ -1,9 +1,10 @@
 cmake_minimum_required (VERSION 2.8)
 project(LIBPQXX CXX C)
-include(cmake_helper_macros.cmake)
+#include(cmake_helper_macros.cmake)
 set(CMAKE_MODULE_PATH ${${PROJECT_NAME}_SOURCE_DIR}/cmake_modules ${CMAKE_MODULE_PATH})
 message(>>>>>>>>>> "PROJECT_NAME ${PROJECT_NAME}" <<<<<<<<<<)
 include(pqxxversion)
+include(utilfunction)
 project_setup(LIBPQXX PQXX_MAJOR PQXX_MINOR PQXX_PATCH)
 include(pqconfiguretests)
 #########################################################################################################
