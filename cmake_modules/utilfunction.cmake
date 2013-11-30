@@ -21,15 +21,20 @@ function(check_std_names result)
 endfunction(check_std_names result)
 
 function(check_broken_iterator _std result)
-	if(NOT ${result})
+	if(NOT _${result})
 #		message(STATUS "check unbroken iterator " )
 		CHECK_CXX_SOURCE_COMPILES("#include <iterator>
 									using namespace ${${_std}};
 									int main (int, char*[]){
 									struct I:iterator<random_access_iterator_tag,int>{};
-									return 0;}" ${result})
+									return 0;}" _${result})
+		if(_${result})
+			set(${result} CACHE INTERNAL "Havn't broken interator")
+		else(_${result})
+			set(${result} 1 CACHE INTERNAL "Have broken interator")
+		endif(_${result})
 #		message(STATUS "unbroken interator is ${${result}}")
-	endif(NOT ${result})
+	endif(NOT _${result})
 endfunction(check_broken_iterator _std result)
 
 function(check_broken_using_decl result)
