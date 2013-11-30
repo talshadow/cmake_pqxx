@@ -1,13 +1,31 @@
 include(CheckIncludeFileCXX)
-include(CheckIncludeFile)
 include(CheckTypeSize)
 include(utilfunction)
 include(CheckFunctionExists)
 include(CheckCXXCompilerFlag)
-include(CheckSymbolExists)
 include(CheckCXXSymbolExists)
-#public compiler
+include(CheckIncludeFiles)
 check_std_names(PGSTD)
+check_include_files("stdarg.h;stdlib.h;string.h;float.h" STDC_HEADERS)
+check_include_file_cxx(ios PQXX_HAVE_IOS)
+check_include_file_cxx(limits PQXX_HAVE_LIMITS)
+check_include_file_cxx(streambuf PQXX_HAVE_STREAMBUF)
+check_include_file_cxx(sys/types.h HAVE_SYS_TYPES_H) # -cxx
+check_include_file_cxx(unistd.h HAVE_UNISTD_H)# -cxx
+check_include_file_cxx(locale PQXX_HAVE_LOCALE)
+check_include_file_cxx(dlfcn.h HAVE_DLFCN_H)# -cxx
+check_include_file_cxx(inttypes.h HAVE_INTTYPES_H)# -cxx
+check_include_file_cxx(memory.h HAVE_MEMORY_H)# -cxx
+check_include_file_cxx(stdint.h HAVE_STDINT_H)# -cxx
+check_include_file_cxx(stdlib.h HAVE_STDLIB_H)# -cxx
+check_include_file_cxx(strings.h HAVE_STRINGS_H)# -cxx
+check_include_file_cxx(string.h HAVE_STRING_H)# -cxx
+check_include_file_cxx(sys/stat.h HAVE_SYS_STAT_H)# -cxx
+check_include_file_cxx(boost/smart_ptr.hpp PQXX_HAVE_BOOST_SMART_PTR)
+check_include_file_cxx(sys/select.h PQXX_HAVE_SYS_SELECT_H)# -cxx
+if(NOT WIN32)
+	check_include_file_cxx(poll.h PQXX_HAVE_POLL) #NOTWINGCC -cxx
+endif(NOT WIN32)
 check_broken_iterator(PGSTD PQXX_BROKEN_ITERATOR)
 check_broken_using_decl(PQXX_BROKEN_USING_DECL)
 check_char_traits(PGSTD PQXX_HAVE_CHAR_TRAITS)
@@ -15,11 +33,8 @@ check_pragma_message(PQXX_HAVE_CPP_PRAGMA_MESSAGE)
 check_cpp_warning(PQXX_HAVE_CPP_WARNING)
 check_reverse_iterator(PGSTD PQXX_HAVE_REVERSE_ITERATOR)
 check_tr1_dir(PQXX_TR1_HEADERS)	# not from public compiler
-check_include_file_cxx(ios PQXX_HAVE_IOS)
-check_include_file_cxx(limits PQXX_HAVE_LIMITS)
 check_type_size("long double" PQXX_HAVE_LONG_DOUBLE)
 check_type_size("long long" PQXX_HAVE_LONG_LONG)
-check_include_file_cxx(streambuf PQXX_HAVE_STREAMBUF)
 #******************************************************************
 #PQXX_PQ_IN_NAMESPACE - unknown test - don't understand what this
 #******************************************************************
@@ -28,10 +43,7 @@ check_function_exists(strerror_s PQXX_HAVE_STRERROR_S)
 unset(CMAKE_EXTRA_INCLUDE_FILES)
 check_tr1_namespace(PGSTD PQXX_TR1_HEADERS PQXXTR1)
 check_shared_ptr(PQXX_TR1_HEADERS PQXXTR1 PQXX_HAVE_SHARED_PTR)
-#internal compiler
-check_include_file(sys/types.h HAVE_SYS_TYPES_H)
-check_include_file(unistd.h HAVE_UNISTD_H)			#WIN GCC
-check_include_file_cxx(locale PQXX_HAVE_LOCALE)
+
 check_cxx_symbol_exists(NAN cmath PQXX_HAVE_C_NAN)
 set(CMAKE_EXTRA_INCLUDE_FILES cmath)
 check_function_exists(nan PQXX_HAVE_NAN)
@@ -49,37 +61,66 @@ set(CMAKE_EXTRA_INCLUDE_FILES unistd.h)
 	check_function_exists(sleep PQXX_HAVE_SLEEP)
 unset(CMAKE_EXTRA_INCLUDE_FILES)
 check_string_clear(PGSTD PQXX_HAVE_STRING_CLEAR)
-check_include_file(sys/select.h PQXX_HAVE_SYS_SELECT_H)
 check_select_accepts_null(PGSTD PQXX_HAVE_SYS_SELECT_H HAVE_UNISTD_H PQXX_SELECT_ACCEPTS_NULL)
-if(NOT WIN32)
-check_include_file(poll.h PQXX_HAVE_POLL) #NOTWINGCC
-endif(NOT WIN32)
 check_std_strerror_r(PGSTD PQXX_HAVE_STRERROR_R)
 check_std_strlcpy(PGSTD PQXX_HAVE_STRLCPY)
 check_std_strnlen(PGSTD PQXX_HAVE_STRNLEN)
 set(CMAKE_EXTRA_INCLUDE_FILES stdio.h stdarg.h)
 	check_function_exists(vsnprintf HAVE_VSNPRINTF_DECL) #WIN
 unset(CMAKE_EXTRA_INCLUDE_FILES)
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+check_auto_ptr(PGSTD PQXX_HAVE_AUTO_PTR)
+set(CMAKE_EXTRA_INCLUDE_FILES cmath)
+check_in_namespace( PGSTD "isinf(0.44)" PQXX_HAVE_C_ISINF)
+check_in_namespace( PGSTD "isnan(0.44)" PQXX_HAVE_C_ISNAN)
+unset(CMAKE_EXTRA_INCLUDE_FILES)
+if(CMAKE_COMPILER_IS_GNUCXX)
+	check_attribute_gcc(const PQXX_HAVE_GCC_CONST)
+	check_attribute_gcc(deprecated PQXX_HAVE_GCC_DEPRECATED)
+	check_attribute_gcc(noreturn PQXX_HAVE_GCC_NORETURN)
+	check_attribute_gcc(pure PQXX_HAVE_GCC_PURE)
+endif(CMAKE_COMPILER_IS_GNUCXX)
+set(CMAKE_EXTRA_INCLUDE_FILES utility)
+check_in_namespace( PGSTD "int i=5; int j=move(i)" PQXX_HAVE_MOVE)
+set(CMAKE_EXTRA_INCLUDE_FILES)
+set(CMAKE_EXTRA_INCLUDE_FILES cstring)
+check_in_namespace( PGSTD "const char *it_is_a_string=strerror_r(0,1,10);" PQXX_HAVE_STRERROR_R_GNU)
+set(CMAKE_EXTRA_INCLUDE_FILES)
+set(CMAKE_EXTRA_INCLUDE_FILES memory)
+check_in_namespace( PGSTD "unique_ptr<int> i(new int)" PQXX_HAVE_UNIQUE_PTR)
+set(CMAKE_EXTRA_INCLUDE_FILES)
+find_path(LIBPQFE libpq-fe.h REQUIRED)
+if(WIN32)
+  find_library(HAVE_LIBPQ libpq REQUIRED)
+else(WIN32)
+  find_library(HAVE_LIBPQ pq REQUIRED)
+  if(NOT LIBPQFE)
+    find_path(LIBPQFE postgresql/libpq-fe.h REQUIRED)
+    set(LIBPQFE "${LIBPQFE}/postgresql")
+  endif(NOT LIBPQFE)
+endif(WIN32)
+include_directories(${LIBPQXX_SOURCE_DIR}/include ${LIBPQFE})
+check_library_exists(${HAVE_LIBPQ} lo_tell "" PQXX_HAVE_LO_TELL)
+check_library_exists(${HAVE_LIBPQ} PQcancel "" PQXX_HAVE_PQCANCEL)
+check_library_exists(${HAVE_LIBPQ} PQclientEncoding "" PQXX_HAVE_PQCLIENTENCODING)
+check_library_exists(${HAVE_LIBPQ} PQdescribePortal "" PQXX_HAVE_PQDESCRIBEPORTAL)
+check_library_exists(${HAVE_LIBPQ} PQencryptPassword "" PQXX_HAVE_PQENCRYPTPASSWORD)
+check_library_exists(${HAVE_LIBPQ} PQescapeBytea "" PQXX_HAVE_PQESCAPEBYTEA)
+check_library_exists(${HAVE_LIBPQ} PQescapeByteaConn "" PQXX_HAVE_PQESCAPEBYTEACONN)
+check_library_exists(${HAVE_LIBPQ} PQescapeString "" PQXX_HAVE_PQESCAPESTRING)
+check_library_exists(${HAVE_LIBPQ} PQescapeStringConn "" PQXX_HAVE_PQESCAPESTRINGCONN)
+check_library_exists(${HAVE_LIBPQ} PQexecParams "" PQXX_HAVE_PQEXECPARAMS)
+check_library_exists(${HAVE_LIBPQ} PQexecPrepared "" PQXX_HAVE_PQEXECPREPARED)
+check_library_exists(${HAVE_LIBPQ} PQfreemem "" PQXX_HAVE_PQFREEMEM)
+check_library_exists(${HAVE_LIBPQ} PQfreeNotify "" PQXX_HAVE_PQFREENOTIFY)
+check_library_exists(${HAVE_LIBPQ} PQftable "" PQXX_HAVE_PQFTABLE)
+check_library_exists(${HAVE_LIBPQ} PQftablecol "" PQXX_HAVE_PQFTABLECOL)
+check_library_exists(${HAVE_LIBPQ} PQisthreadsafe "" PQXX_HAVE_PQISTHREADSAFE)
+check_library_exists(${HAVE_LIBPQ} PQmblen "" PQXX_HAVE_PQMBLEN)
+check_library_exists(${HAVE_LIBPQ} PQprepare "" PQXX_HAVE_PQPREPARE)
+check_library_exists(${HAVE_LIBPQ} PQprotocolVersion "" PQXX_HAVE_PQPROTOCOLVERSION)
+check_library_exists(${HAVE_LIBPQ} PQputCopyData "" PQXX_HAVE_PQPUTCOPY)
+check_library_exists(${HAVE_LIBPQ} PQresultErrorField "" PQXX_HAVE_PQRESULTERRORFIELD)
+check_library_exists(${HAVE_LIBPQ} PQserverVersion "" PQXX_HAVE_PQSERVERVERSION)
+check_library_exists(${HAVE_LIBPQ} PQunescapeBytea "" PQXX_HAVE_PQUNESCAPEBYTEA)
+check_library_exists(${HAVE_LIBPQ} PQescapeIdentifier "" PQXX_HAVE_PQESCAPEIDENTIFIER)
+check_library_exists(${HAVE_LIBPQ} PQescapeLiteral "" PQXX_HAVE_PQESCAPELITERAL)
