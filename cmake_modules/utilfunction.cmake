@@ -45,6 +45,11 @@ function(check_broken_using_decl result)
 									int main (int, char*[]){
 									B b;b.f(1,true);
 									return 0;}" ${result})
+		if(${result})
+			set(${result} CACHE INTERNAL BOOL )
+		else(${result})
+			set(${result} 1 CACHE INTERNAL BOOL)
+		endif(${result})
 #		message(STATUS "using declaration is ${${result}}")
 	endif(NOT ${result})
 endfunction(check_broken_using_decl result)
