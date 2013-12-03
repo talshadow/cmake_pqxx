@@ -1,0 +1,31 @@
+set(${PROJECT_NAME}_src
+${${PROJECT_NAME}_SOURCE_DIR}/src/binarystring.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/connection.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/connection_base.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/cursor.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/dbtransaction.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/errorhandler.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/except.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/field.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/largeobject.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/nontransaction.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/notification.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/notify-listen.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/pipeline.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/prepared_statement.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/result.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/robusttransaction.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/statement_parameters.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/strconv.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/subtransaction.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/tablereader.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/tablestream.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/tablewriter.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/transaction.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/transaction_base.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/tuple.cxx
+${${PROJECT_NAME}_SOURCE_DIR}/src/util.cxx
+CACHE INTERNAL LIST)
+if(WIN32)
+	set(${PROJECT_NAME}_src ${${PROJECT_NAME}_src} ${${PROJECT_NAME}_SOURCE_DIR}/src/util.cxx	CACHE INTERNAL LIST)
+endif(WIN32)
